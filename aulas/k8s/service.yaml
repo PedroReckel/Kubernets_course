@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: goserver-service
+spec:
+  selector: # Esse cara vai ser responsável por filtrar todos os pods que vão estar incoporados nesse serviço
+    app: goserver # Aqui ele vai pegar todos os pods cuja ele tenha na parte de matchLabels aonde app é igual a goserver
+  type: ClusterIP
+  ports: 
+  - name: goserver-service
+    port: 8001
+    # targetPort:  8000 Eu posso usar esse target port para especificar a porta que eu quero que seja acessada.
+    protocol: TCP
+
+
+
+# Esse cluster IP ele é um IP interno do servidor. Todo mundo que estiver dentro do meu Kurbenets e conseguir acessar esse IP ele vai bater nesse service e o service 
+# vai escolher qual dos pods vai acessar.
+
+# O service vai escolher qual pod vai acessar e vai fazer o balanceamento
+
+# NAME               TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
+# goserver-service   ClusterIP   10.96.174.170   <none>        80/TCP    19s    
+# kubernetes         ClusterIP   10.96.0.1       <none>        443/TCP   7d1h
+
+
+# Usar esse comando para acessar o meu serive: kubectl port-forward svc/goserver-service 8000:80
