@@ -5,13 +5,12 @@ metadata:
 spec:
   selector: # Esse cara vai ser responsável por filtrar todos os pods que vão estar incoporados nesse serviço
     app: goserver # Aqui ele vai pegar todos os pods cuja ele tenha na parte de matchLabels aonde app é igual a goserver
-  type: ClusterIP
+  type: LoadBalancer # Eu uso o LoadBalancer para quando eu precisar de um IP externo.
   ports: 
   - name: goserver-service
-    port: 8001
-    # targetPort:  8000 Eu posso usar esse target port para especificar a porta que eu quero que seja acessada.
+    port: 8001 # Essa é a porta do meu service
+    targetPort:  8000 # Eu posso usar esse target port para especificar a porta que eu quero que seja acessada (Essa é a porta do meu container).
     protocol: TCP
-
 
 
 # Esse cluster IP ele é um IP interno do servidor. Todo mundo que estiver dentro do meu Kurbenets e conseguir acessar esse IP ele vai bater nesse service e o service 
