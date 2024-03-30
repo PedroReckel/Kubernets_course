@@ -8,7 +8,7 @@ spec:
   selector: 
     matchLabels:
       app: goserver
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:
@@ -16,4 +16,38 @@ spec:
     spec:
       containers:
         - name: goserver
-          image: "pedroreckel/hellow-go:v2"
+          image: "pedroreckel/hellow-go:v5.1"
+          envFrom:  # Forma mais simples de importar todas as variáveis de ambiente.
+            - configMapRef:
+                name: goserver-env
+
+          volumeMounts: 
+              - mountPath: "/go/myfamily"
+                name: config 
+      
+      volumes:
+        - name: config
+          configMap:
+            name: configmap-family
+            items: 
+              - key: members
+                path: "family.txt"
+
+          
+
+
+
+        # Forma mais especifica de pegas as variáveis de ambiente:
+
+          # env:
+          #   - name: NAME
+          #     valueFrom:
+          #       configMapKeyRef:
+          #         name: goserver-env
+          #         key: NAME
+
+          #   - name: AGE
+          #     valueFrom:
+          #      configMapKeyRef:
+          #       name: goserver-env
+          #       key: AGE

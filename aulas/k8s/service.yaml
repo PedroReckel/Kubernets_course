@@ -8,7 +8,7 @@ spec:
   type: LoadBalancer # Eu uso o LoadBalancer para quando eu precisar de um IP externo.
   ports: 
   - name: goserver-service
-    port: 8001 # Essa é a porta do meu service
+    port: 80 # Essa é a porta do meu service
     targetPort:  8000 # Eu posso usar esse target port para especificar a porta que eu quero que seja acessada (Essa é a porta do meu container).
     protocol: TCP
 
