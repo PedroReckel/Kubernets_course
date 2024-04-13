@@ -11,7 +11,7 @@ import (
 func main() {
 	http.HandleFunc("/configmap", ConfigMap)
 	http.HandleFunc("/", Hello)
-	http.ListenAndServe(":8000", nil)
+	http.ListenAndServe(":80", nil)
 }
 
 func Hello(w http.ResponseWriter, r *http.Request) {

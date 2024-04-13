@@ -8,7 +8,7 @@ spec:
   selector: 
     matchLabels:
       app: goserver
-  replicas: 1
+  replicas: 4
   template:
     metadata:
       labels:
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: goserver
-          image: "pedroreckel/hellow-go:v5.1"
+          image: "pedroreckel/hello-go:latest"
           envFrom:  # Forma mais simples de importar todas as variáveis de ambiente.
             - configMapRef:
                 name: goserver-env

@@ -16,4 +16,4 @@ spec:
     spec:
       containers:
         - name: goserver
-          image: "pedroreckel/hellow-go:v2"
+          image: "pedroreckel/hello-go:latest"
