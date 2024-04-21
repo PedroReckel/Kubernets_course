@@ -8,7 +8,7 @@ spec:
   selector: 
     matchLabels:
       app: goserver
-  replicas: 4
+  replicas: 1
   template:
     metadata:
       labels:
@@ -16,12 +16,14 @@ spec:
     spec:
       containers:
         - name: goserver
-          image: "pedroreckel/hello-go:latest"
+          image: "pedroreckel/hello-go:v5"
           envFrom:  # Forma mais simples de importar todas as variáveis de ambiente.
             - configMapRef:
                 name: goserver-env
+            - secretRef:
+                name: goserver-secret
 
-          volumeMounts: 
+          volumeMounts:  
               - mountPath: "/go/myfamily"
                 name: config 
       
