@@ -16,7 +16,25 @@ spec:
     spec:
       containers:
         - name: goserver
-          image: "pedroreckel/hello-go:v5"
+          image: "pedroreckel/hello-go:v5.4"
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 8000
+            periodSeconds: 3
+            failureThreshold: 1
+            initialDelaySeconds: 10
+
+                    # livenessProbe:
+          #   httpGet:
+          #     path: /healthz
+          #     port: 8000
+          #   periodSeconds: 5
+          #   failureThreshold: 3
+          #   timeoutSeconds: 1
+          #   successThreshold: 1
+
+
           envFrom:  # Forma mais simples de importar todas as variáveis de ambiente.
             - configMapRef:
                 name: goserver-env
