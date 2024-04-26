@@ -18,6 +18,14 @@ spec:
         - name: goserver
           image: "pedroreckel/hello-go:v5.5"
 
+          resources:
+            requests: # Minimo -> Sequestrando (reservando) -> POD
+              cpu: "0.05"
+              memory: 20Mi
+            limits: 
+              cpu: "0.05" # Sempre tente evitar que a soma de todos os limites ultrapasse a quantidade disponivel de recusos no cluster
+              memory: 25Mi
+
           startupProbe:
             httpGet:
               path: /healthz
