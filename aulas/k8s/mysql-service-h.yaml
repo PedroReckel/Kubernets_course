@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+spec:
+  replicas: 4
+  selector:
+    app: mysql-h
+  ports:
+    - port: 3306
+  clusterIp: None
