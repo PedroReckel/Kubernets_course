@@ -3,5 +3,5 @@ kind: ConfigMap
 metadata:
   name: goserver-env
 data:
-  NAME: "Pedro"
+  NAME: "Pedro Reckel"
   AGE: "22"
